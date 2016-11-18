@@ -21,7 +21,8 @@
 		  </div>
 		  <div id="navbar" class="navbar-collapse collapse">
 		    <ul class="nav navbar-nav">
-		      <li class="active"><a href="#">Home</a></li>
+		      <li class="active"><a href="/">Home</a></li>
+              <li><a href="/forum">Forum</a></li>
 		    </ul>
 		  </div>
 		</div>
@@ -29,6 +30,9 @@
 
 	<div class="chat_window" style="margin-top: 20px;">
 		<div class="top_menu">
+            <div class="buttons">
+                <a class="btn btn-danger">Help Me</a>
+            </div>
 			<div class="title">Hector</div>
 		</div>
 			<ul class="messages"></ul>
@@ -100,7 +104,10 @@
     };
 
     $(function () {
-        var getMessageText, sendMessage;
+        var getMessageText, sendMessage, type;
+
+        var type="<%= type%>";
+        console.log(type);
 
         getMessageText = function () {
             var $message_input;
@@ -130,11 +137,13 @@
         		done(function(data){
         			setTimeout(function () {
 			            return sendMessage(data.response,'left');
-			        }, 1000);
+			        }, 1500);
         		});
         });
 
-        sendMessage('Hello, My name is Hector! How can I help?','left');
+        setTimeout(function () {
+            return sendMessage('Hello, My name is Hector! How can I help?','left');
+        }, 1500);
 
     });
 }.call(this));

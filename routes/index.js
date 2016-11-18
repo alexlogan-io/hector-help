@@ -7,7 +7,11 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/chat', function(req, res, next) {
-  res.render('chat', { title: 'Hector Help' });
+  res.render('chat', { title: 'Hector Help', type:req.query.type });
+});
+
+router.get('/forum', function(req, res, next) {
+  res.render('forum', { title: 'Hector Help'});
 });
 
 router.post('/chat-response', function(req,res){
