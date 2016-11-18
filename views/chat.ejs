@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/bootstrap.min.css'/>
+
+  </head>
+  <body>
+
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container">
+		  <div class="navbar-header">
+		    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+		      <span class="sr-only">Toggle navigation</span>
+		      <span class="icon-bar"></span>
+		      <span class="icon-bar"></span>
+		      <span class="icon-bar"></span>
+		    </button>
+		    <a class="navbar-brand" href="#">Hector Help</a>
+		  </div>
+		  <div id="navbar" class="navbar-collapse collapse">
+		    <ul class="nav navbar-nav">
+		      <li class="active"><a href="#">Home</a></li>
+		    </ul>
+		  </div>
+		</div>
+	</nav>
+
+	<div class="chat_window">
+		<div class="top_menu">
+			<div class="title">Hector</div>
+		</div>
+			<ul class="messages"></ul>
+			<div class="bottom_wrapper clearfix">
+			<div class="message_input_wrapper">
+				<input class="message_input" placeholder="Type your message here..." />
+			</div>
+			<div class="send_message">
+				<div class="icon"></div>
+				<div class="text">Send</div>
+			</div>
+		</div>
+	</div>
+	<div class="message_template">
+		<li class="message">
+			<div class="avatar"></div>
+			<div class="text_wrapper">
+				<div class="text"></div>
+			</div>
+		</li>
+	</div>
+
+	<!--footer class="footer">
+      <div class="container">
+        <p class="text-muted">&copy; Hello Hector</p>
+      </div>
+    </footer-->
+
+  </body>
+
+  <script src='/javascripts/jquery-3.1.1.min.js'></script>
+  <script src='/javascripts/bootstrap.min.js'></script>
+
+  <script type="text/javascript">
+ (function () {
+
+    var Message;
+    Message = function (arg) {
+        this.text = arg.text, this.message_side = arg.message_side;
+        this.draw = function (_this) {
+            return function () {
+                var $message;
+                $message = $($('.message_template').clone().html());
+                $message.addClass(_this.message_side).find('.text').html(_this.text);
+                $('.messages').append($message);
+                return setTimeout(function () {
+                    return $message.addClass('appeared');
+                }, 0);
+            };
+        }(this);
+        return this;
+    };
+
+    $(function () {
+        var getMessageText, sendMessage;
+
+        getMessageText = function () {
+            var $message_input;
+            $message_input = $('.message_input');
+            return $message_input.val();
+        };
+
+        sendMessage = function (text, side) {
+            var $messages, message;
+            if (text.trim() === '') {
+                return;
+            }
+            $('.message_input').val('');
+            $messages = $('.messages');
+            message_side = side;
+            message = new Message({
+                text: text,
+                message_side: message_side
+            });
+            message.draw();
+            return $messages.animate({ scrollTop: $messages.prop('scrollHeight') }, 300);
+        };
+
+        $('.send_message').click(function (e) {
+        	sendMessage(getMessageText(),'right');
+        	$.post('/chat-response').
+        		done(function(data){
+        			setTimeout(function () {
+			            return sendMessage(data.response,'left');
+			        }, 1000);
+        		});
+        });
+
+        sendMessage('Hello, My name is Hector! How can I help?','left');
+
+    });
+}.call(this));
+  </script>
+
+</html>
