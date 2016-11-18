@@ -6,6 +6,10 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Hector Help' });
 });
 
+router.get('/hector', function(req, res, next) {
+  res.render('hector', { title: 'Hector Help' });
+});
+
 router.get('/chat', function(req, res, next) {
   res.render('chat', { title: 'Hector Help', type:req.query.type });
 });

@@ -8,27 +8,7 @@
   </head>
   <body>
 
-	<nav class="navbar navbar-default navbar-fixed-top">
-		<div class="container">
-		  <div class="navbar-header">
-		    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-		      <span class="sr-only">Toggle navigation</span>
-		      <span class="icon-bar"></span>
-		      <span class="icon-bar"></span>
-		      <span class="icon-bar"></span>
-		    </button>
-		    <a class="navbar-brand" href="#">Hector Help</a>
-		  </div>
-		  <div id="navbar" class="navbar-collapse collapse">
-		    <ul class="nav navbar-nav">
-		      <li class="active"><a href="/">Home</a></li>
-              <li><a href="/forum">Forum</a></li>
-		    </ul>
-		  </div>
-		</div>
-	</nav>
-
-	<div class="chat_window" style="margin-top: 20px;">
+	<div class="chat_window" style="margin-top: 10px;">
 		<div class="top_menu">
             <div class="buttons">
                 <a class="btn btn-danger">Help Me</a>
@@ -132,9 +112,12 @@
         };
 
         $('.send_message').click(function (e) {
-        	sendMessage(getMessageText(),'right');
-        	$.post('/chat-response').
+
+            var postdata = {};
+
+        	$.post('/chat-response', postdata).
         		done(function(data){
+                    sendMessage(getMessageText(),'right');
         			setTimeout(function () {
 			            return sendMessage(data.response,'left');
 			        }, 1500);

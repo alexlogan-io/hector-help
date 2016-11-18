@@ -19,6 +19,7 @@ body {
 .well {
   background-color: white !important;
   border: 1px solid #f5f5f5 !important;
+  border-radius: 20px !important;
 }
 
 .breadcrumb {
@@ -27,6 +28,10 @@ body {
 
 * {
   box-sizing: border-box;
+}
+
+li {
+    text-transform: capitalize;
 }
 
 .chat_window {
