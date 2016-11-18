@@ -14,6 +14,10 @@ router.get('/forum', function(req, res, next) {
   res.render('forum', { title: 'Hector Help'});
 });
 
+router.get('/forum/:category', function(req, res, next) {
+  res.render('forum-category', { title: 'Hector Help', category: req.params.category});
+});
+
 router.post('/chat-response', function(req,res){
   res.json({response:"a test response"});
 });
