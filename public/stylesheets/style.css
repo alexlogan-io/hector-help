@@ -207,6 +207,10 @@ body {
   line-height: 48px;
 }
 
-.message_template {
+.message_template_left {
+  display: none;
+}
+
+.message_template_right {
   display: none;
 }

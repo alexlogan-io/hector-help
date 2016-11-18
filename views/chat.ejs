@@ -27,7 +27,7 @@
 		</div>
 	</nav>
 
-	<div class="chat_window">
+	<div class="chat_window" style="margin-top: 20px;">
 		<div class="top_menu">
 			<div class="title">Hector</div>
 		</div>
@@ -42,14 +42,27 @@
 			</div>
 		</div>
 	</div>
-	<div class="message_template">
+	<div class="message_template_left">
 		<li class="message">
-			<div class="avatar"></div>
+			<div class="avatar">
+				<img id="hector" src="/images/hector.jpg" class="img-circle" width="60" height="60">
+			</div>
 			<div class="text_wrapper">
 				<div class="text"></div>
 			</div>
 		</li>
 	</div>
+
+    <div class="message_template_right">
+        <li class="message">
+            <div class="avatar">
+                <img id="user" src="/images/jesse.jpg" class="img-circle" width="60" height="60">
+            </div>
+            <div class="text_wrapper">
+                <div class="text"></div>
+            </div>
+        </li>
+    </div>
 
 	<!--footer class="footer">
       <div class="container">
@@ -71,7 +84,11 @@
         this.draw = function (_this) {
             return function () {
                 var $message;
-                $message = $($('.message_template').clone().html());
+                if(_this.message_side == 'left'){
+                    $message = $($('.message_template_left').clone().html());
+                }else{
+                    $message = $($('.message_template_right').clone().html());
+                }   
                 $message.addClass(_this.message_side).find('.text').html(_this.text);
                 $('.messages').append($message);
                 return setTimeout(function () {
