@@ -113,12 +113,7 @@
         };
 
         var post = function(){
-            var postdata = {
-                message:getMessageText,
-                lastCommand:lastCommand
-            };
-
-            $.post('https://hector-help-bot.azurewebsites.net/api/bot', postdata).
+            $.get('https://hector-help-bot.azurewebsites.net/api/bot?message=' + getMessageText() + '&lastCommand=' + lastCommand).
                 done(function(data){
                     sendMessage(getMessageText(),'right');
                     setTimeout(function () {
