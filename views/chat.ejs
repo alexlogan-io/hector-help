@@ -119,7 +119,7 @@
                 dataType: 'jsonp', // Notice! JSONP <-- P (lowercase)
                 success:function(json){
                  // do stuff with json (in this case an array)
-                 console.log(json);
+                 //console.log(json);
                  sendMessage(getMessageText(),'right');
                     setTimeout(function () {
                         lastCommand = json.lastCommand;
@@ -128,20 +128,13 @@
                 },
                 error:function(){
                  console.log('error');
+                 sendMessage(getMessageText(),'right');
+                    setTimeout(function () {
+                        lastCommand = "null";
+                        return sendMessage("Sorry, I didn't understand that.",'left');
+                    }, 1500);
                 }
             });
-            
-
-
-            $.get('https://hector-help-bot.azurewebsites.net/api/bot/' + getMessageText() + '/' + lastCommand).
-                done(function(data){
-                    console.log(data);
-                    sendMessage(getMessageText(),'right');
-                    setTimeout(function () {
-                        lastCommand = data.lastCommand;
-                        return sendMessage(data.message,'left');
-                    }, 1500);
-                });
         }
 
         $('.send_message').click(function (e) {
