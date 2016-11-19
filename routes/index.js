@@ -17,7 +17,7 @@ router.get('/chat', function(req, res, next) {
 });
 
 router.get('/forum', function(req, res, next) {
-  res.render('forum', { title: 'Hector Help'});
+  res.redirect('/forum/teasing');
 });
 
 router.get('/forum/:category', function(req, res, next) {

@@ -10,10 +10,7 @@
 
 	<div class='container' style="margin-top: 100px">
 		<div class='row'>
-		<ol class="breadcrumb">
-		  <li><a href="/forum">Home</a></li>
-		  <li class="active capitalize"><%=category%></li>
-		</ol>
+
 		<div class="well">
 			<h2 id='title'>
 			</h2>
@@ -47,6 +44,11 @@
 	}
   	];
   	(function () {
+
+  		function capitalizeFirstLetter(string) {
+		    return string.charAt(0).toUpperCase() + string.slice(1);
+		}
+
   		$(function () {
   			var category = "<%=category%>";
 
@@ -64,6 +66,11 @@
 				$("#title").text(forumJson[2].title);
     			$("#body").text(forumJson[2].body);
     			$("#user").text(forumJson[2].user);
+			}
+			else {
+				$("#title").text(capitalizeFirstLetter(category));
+				$("#body").text("I have been a victim of " + category + ".");
+				$("#user").text(forumJson[2].user);
 			}
 
 		});
