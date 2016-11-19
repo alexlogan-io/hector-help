@@ -115,11 +115,12 @@
         var init  = function(){
             $.ajax({
                 url:'https://login.microsoftonline.com/common/oauth2/v2.0/token',
-                type:'post',
+                type:'POST',
+                dataType: "json"
                 headers:{
                     'Content-Type': 'application/x-www-form-urlencoded',
                     'grant_type':'client_credentials&client_id=63df6ce0-b163-419e-a8b0-48cfd615646e&client_secret=tfCi9cmMBywRVn7d2QAJo97&scope=https://hector-help-bot.azurewebsites.net',
-                    'Access-Control-Allow-Origin':'*'
+                    'Access-Control-Allow-Origin':'https://login.microsoftonline.com/common/oauth2/v2.0/token'
                 },
                 success: function(data){  
                     console.log(data);
