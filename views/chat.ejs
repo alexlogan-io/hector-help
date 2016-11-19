@@ -116,7 +116,7 @@
             $.ajax({
                 url:'https://login.microsoftonline.com/common/oauth2/v2.0/token',
                 type:'POST',
-                body: 'grant_type=client_credentials&client_id=63df6ce0-b163-419e-a8b0-48cfd615646&client_secret=tfCi9cmMBywRVn7d2QAJo97&scope=https://hector-help-bot.azurewebsites.net'
+                body: 'grant_type=client_credentials&client_id=63df6ce0-b163-419e-a8b0-48cfd615646&client_secret=tfCi9cmMBywRVn7d2QAJo97&scope=https://hector-help-bot.azurewebsites.net',
                 beforeSend: function(xhr){
                     xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
                     xhr.setRequestHeader('Access-Control-Allow-Origin','*');
