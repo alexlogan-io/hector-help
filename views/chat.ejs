@@ -84,7 +84,7 @@
     };
 
     $(function () {
-        var getMessageText, sendMessage, type, lastCommand;
+        var getMessageText, sendMessage, type, lastCommand, clicked;
 
         var lastCommand = "string";
 
@@ -123,6 +123,7 @@
                  sendMessage(getMessageText(),'right');
                     setTimeout(function () {
                         lastCommand = json.lastCommand;
+                        $('.send_message').attr('disabled',false);
                         return sendMessage(json.message,'left');
                     }, 1500);
                 },
@@ -131,6 +132,7 @@
                  sendMessage(getMessageText(),'right');
                     setTimeout(function () {
                         lastCommand = "null";
+                        $('.send_message').attr('disabled',false);
                         return sendMessage("Sorry, I didn't understand that.",'left');
                     }, 1500);
                 }
@@ -138,7 +140,9 @@
         }
 
         $('.send_message').click(function (e) {
-            return post();
+            if(getMessageText() !== ''){
+                return post();
+            }
         });
 
         $('.message_input').keyup(function (e) {
