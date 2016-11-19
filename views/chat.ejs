@@ -84,12 +84,12 @@
     };
 
     $(function () {
-        var getMessageText, sendMessage, type;
+        var getMessageText, sendMessage, type, lastCommand;
+
+        var lastCommand = "";
 
         var type="<%= type%>";
         
-        var token;
-
         getMessageText = function () {
             var $message_input;
             $message_input = $('.message_input');
@@ -112,41 +112,18 @@
             return $messages.animate({ scrollTop: $messages.prop('scrollHeight') }, 300);
         };
 
-        var init  = function(){
-            $.support.cors = true;
-            $.ajax({
-                url:'https://login.microsoftonline.com/d6d49420-f39b-4df7-a1dc-d59a935871db/oauth2/v2.0/token',
-                type:'POST',
-                headers: {'Content-Type': 'application/x-www-form-urlencoded',
-                            'Access-Control-Allow-Origin': '*',
-                            'Origin': 'https://login.microsoftonline.com'},
-                transformRequest: function(obj) {
-                    var str = [];
-                    for(var p in obj)
-                    str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-                    return str.join("&");
-                },
-                data: {grant_type: 'client_credentials',
-                    client_id: '63df6ce0-b163-419e-a8b0-48cfd615646e',
-                    client_secret: 'tfCi9cmMBywRVn7d2QAJo97',
-                    scope: 'https://api.botframework.com/.default'
-                },
-                success: function(data){  
-                    console.log(data);
-                }
-            });
-        }
-
         var post = function(){
             var postdata = {
-                message:getMessageText
+                message:getMessageText,
+                lastCommand:lastCommand
             };
 
-            $.post('https://hector-help-bot.azurewebsites.net/api/messages', postdata).
+            $.post('https://hector-help-bot.azurewebsites.net/api/bot', postdata).
                 done(function(data){
                     sendMessage(getMessageText(),'right');
                     setTimeout(function () {
-                        return sendMessage(data.response,'left');
+                        lastCommand = data.lastCommand;
+                        return sendMessage(data.message,'left');
                     }, 1500);
                 });
         }
@@ -160,8 +137,6 @@
                 return post();
             }
         });
-
-        init();
 
         setTimeout(function () {
             return sendMessage('Hello, My name is Hector! How can I help?','left');
