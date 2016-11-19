@@ -5,7 +5,7 @@ var lastResponse;
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Hector Help' });
+  res.render('hector', { title: 'Hector Help' });
 });
 
 router.get('/hector', function(req, res, next) {
