@@ -89,7 +89,7 @@
 
         function encodeHTML(s) {
             return s.replace(/&/g, '').replace(/</g, '').replace(/"/g, '')
-                .replace(/\//g, '').replace(/>/g, '');
+                .replace(/\//g, '').replace(/>/g, '').replace(/\?/g, '');
         }
         
         getMessageText = function () {
@@ -122,7 +122,7 @@
                 success:function(json){
                  // do stuff with json (in this case an array)
                  //console.log(json);
-                 sendMessage(getMessageText(),'right');
+                 sendMessage($('.message_input').val(),'right');
                     setTimeout(function () {
                         lastCommand = json.lastCommand;
                         $('.send_message').attr('disabled',false);
@@ -131,7 +131,7 @@
                 },
                 error:function(){
                  console.log('error');
-                 sendMessage(getMessageText(),'right');
+                 sendMessage($('.message_input').val(),'right');
                     setTimeout(function () {
                         lastCommand = "null";
                         $('.send_message').attr('disabled',false);
