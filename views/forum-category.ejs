@@ -30,14 +30,42 @@
   <script src='/javascripts/bootstrap.min.js'></script>
 
   <script type="text/javascript">
+  	var forumJson = [{
+  		"title":"Homophobia",
+		"body":"There two boys in school who are always making fun of me the call me gay.",
+		"user":"18/11/16 11:13 user67688"
+  	},
+  	{
+		"title":"Teasing",
+		"body":"There is this guy in my class and everyday he calls me names like geek",
+		"user":"18/11/16 11:13 user67688"
+	},
+	{
+		"title":"Xenephobia",
+		"body":"Everyone in school picks on me just because my mum is from Romania.",
+		"user":"18/11/16 11:13 user7675"
+	}
+  	];
   	(function () {
   		$(function () {
-  			$.get('/data/forum-<%=category%>.json').
-        		done(function(data){
-        			$("#title").text(data.title);
-        			$("#body").text(data.body);
-        			$("#user").text(data.user);
-        		});
+  			var category = "<%=category%>";
+
+  			if(category === "homophobia"){
+  				$("#title").text(forumJson[0].title);
+    			$("#body").text(forumJson[0].body);
+    			$("#user").text(forumJson[0].user);
+			}
+			else if(category === "teasing"){
+				$("#title").text(forumJson[1].title);
+    			$("#body").text(forumJson[1].body);
+    			$("#user").text(forumJson[1].user);
+			}
+			else if(category === "xenephobia"){
+				$("#title").text(forumJson[2].title);
+    			$("#body").text(forumJson[2].body);
+    			$("#user").text(forumJson[2].user);
+			}
+
 		});
 	}.call(this));
   </script>
