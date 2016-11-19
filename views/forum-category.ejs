@@ -14,8 +14,22 @@
 		<div class="well">
 			<h2 id='title'>
 			</h2>
+			<br/>
 			<h4>This is a safe and secure place full of people to help support you.</h4>
 			<hr/>
+			<h4>Comments: </h4>
+			<br/>
+			<div id="comments">
+			</div>
+			<br/>
+			<div class="row">
+				<div class="col-md-7 col-xs-7">
+					<input id="commentInput" class="form-control" placeholder="Write your comment... " type="text" name="comment">
+				</div>
+				<div class="col-md-3 col-xs-3">
+					<button id="commentButton" type="button" class="btn btn-success">Submit</button>
+				</div>
+			</div>
 		</div>
 		</div>
 	</div>
@@ -25,22 +39,11 @@
   <script src='/javascripts/bootstrap.min.js'></script>
 
   <script type="text/javascript">
-  	var forumJson = [{
-  		"title":"Homophobia",
-		"body":"There two boys in school who are always making fun of me the call me gay.",
-		"user":"18/11/16 11:13 user67688"
-  	},
-  	{
-		"title":"Teasing",
-		"body":"There is this guy in my class and everyday he calls me names like geek",
-		"user":"18/11/16 11:13 user67688"
-	},
-	{
-		"title":"Xenephobia",
-		"body":"Everyone in school picks on me just because my mum is from Romania.",
-		"user":"18/11/16 11:13 user7675"
-	}
-  	];
+
+		var submitComment = function() {
+		    $("#comments").append("<span>" + $("#commentInput").val() + "</span>");
+		}
+
   	(function () {
 
   		function capitalizeFirstLetter(string) {
@@ -50,22 +53,12 @@
   		$(function () {
   			var category = "<%=category%>";
 
-  			if(category === "homophobia"){
-  				$("#title").text(forumJson[0].title);
-    			$("#body").text(forumJson[0].body);
-			}
-			else if(category === "teasing"){
-				$("#title").text(forumJson[1].title);
-    			$("#body").text(forumJson[1].body);
-			}
-			else if(category === "xenephobia"){
-				$("#title").text(forumJson[2].title);
-    			$("#body").text(forumJson[2].body);
-			}
-			else {
-				$("#title").text("This is a Hector Help forum for issues surrounding " + capitalizeFirstLetter(category));
-				$("#body").text("I have been a victim of " + category + ".");
-			}
+			$("#title").text("This is a Hector Help forum for issues surrounding " + capitalizeFirstLetter(category));
+
+			$("#commentButton").click(function (e) {
+	            $("#comments").append("<span>" + "  <strong>user</strong> &nbsp;&nbsp;&nbsp; " + $("#commentInput").val() + "</span><br/><br/>");
+	            $("#commentInput").val("");
+	        });
 
 		});
 	}.call(this));
