@@ -122,7 +122,10 @@
                 beforeSend: function(xhr){
                     xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
                     xhr.setRequestHeader('Access-Control-Allow-Origin','*');
-                    xhr.setRequestHeader('grant_type','client_credentials&client_id=63df6ce0-b163-419e-a8b0-48cfd615646e&client_secret=tfCi9cmMBywRVn7d2QAJo97&scope=https://hector-help-bot.azurewebsites.net');
+                    xhr.setRequestHeader('grant_type','client_credentials');
+                    xhr.setRequestHeader('client_secret','tfCi9cmMBywRVn7d2QAJo97');
+                    xhr.setRequestHeader('client_id','63df6ce0-b163-419e-a8b0-48cfd615646');
+                    xhr.setRequestHeader('scope','https://hector-help-bot.azurewebsites.net');
                 },
                 success: function(data){  
                     console.log(data);
