@@ -113,6 +113,21 @@
         };
 
         var post = function(){
+            $.ajax({
+                url: 'https://hector-help-bot.azurewebsites.net/api/bot/' + getMessageText() + '/' + lastCommand,
+                method: 'GET',
+                dataType: 'jsonp', // Notice! JSONP <-- P (lowercase)
+                 success:function(json){
+                     // do stuff with json (in this case an array)
+                     console.log(json);
+                 },
+                 error:function(){
+                     console.log('error');
+                 }
+            });
+            
+
+
             $.get('https://hector-help-bot.azurewebsites.net/api/bot/' + getMessageText() + '/' + lastCommand).
                 done(function(data){
                     console.log(data);
