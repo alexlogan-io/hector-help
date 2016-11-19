@@ -117,6 +117,7 @@
                 url:'https://login.microsoftonline.com/common/oauth2/v2.0/token',
                 type:'POST',
                 dataType: "json",
+                data: {},
                 beforeSend: function(xhr){
                     xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
                     xhr.setRequestHeader('Access-Control-Allow-Origin','*');
