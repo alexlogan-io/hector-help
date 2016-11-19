@@ -117,13 +117,18 @@
                 url: 'https://hector-help-bot.azurewebsites.net/api/bot/' + getMessageText() + '/' + lastCommand,
                 method: 'GET',
                 dataType: 'jsonp', // Notice! JSONP <-- P (lowercase)
-                 success:function(json){
-                     // do stuff with json (in this case an array)
-                     console.log(json);
-                 },
-                 error:function(){
-                     console.log('error');
-                 }
+                success:function(json){
+                 // do stuff with json (in this case an array)
+                 console.log(json);
+                 sendMessage(getMessageText(),'right');
+                    setTimeout(function () {
+                        lastCommand = json.lastCommand;
+                        return sendMessage(json.message,'left');
+                    }, 1500);
+                },
+                error:function(){
+                 console.log('error');
+                }
             });
             
 
