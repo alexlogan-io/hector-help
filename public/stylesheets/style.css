@@ -30,7 +30,7 @@ body {
   box-sizing: border-box;
 }
 
-li {
+li.capitalize {
     text-transform: capitalize;
 }
 

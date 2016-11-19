@@ -87,7 +87,8 @@
         var getMessageText, sendMessage, type;
 
         var type="<%= type%>";
-        console.log(type);
+        
+        var token;
 
         getMessageText = function () {
             var $message_input;
@@ -111,18 +112,45 @@
             return $messages.animate({ scrollTop: $messages.prop('scrollHeight') }, 300);
         };
 
-        $('.send_message').click(function (e) {
+        var init  = function(){
+            $.ajax({
+                url:'https://login.microsoftonline.com/common/oauth2/v2.0/token',
+                type:'post',
+                headers:{
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'grant_type':'client_credentials&client_id=63df6ce0-b163-419e-a8b0-48cfd615646e&client_secret=tfCi9cmMBywRVn7d2QAJo97&scope=https://hector-help-bot.azurewebsites.net'
+                },
+                success: function(data){  
+                    console.log(data);
+                }
+            });
+        }
 
-            var postdata = {message:getMessageText};
+        var post = function(){
+            var postdata = {
+                message:getMessageText
+            };
 
-        	$.post('/chat-response', postdata).
-        		done(function(data){
+            $.post('https://hector-help-bot.azurewebsites.net/api/messages', postdata).
+                done(function(data){
                     sendMessage(getMessageText(),'right');
-        			setTimeout(function () {
-			            return sendMessage(data.response,'left');
-			        }, 1500);
-        		});
+                    setTimeout(function () {
+                        return sendMessage(data.response,'left');
+                    }, 1500);
+                });
+        }
+
+        $('.send_message').click(function (e) {
+            return post();
         });
+
+        $('.message_input').keyup(function (e) {
+            if (e.which === 13) {
+                return post();
+            }
+        });
+
+        init();
 
         setTimeout(function () {
             return sendMessage('Hello, My name is Hector! How can I help?','left');

@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 
+var lastResponse;
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Hector Help' });
@@ -25,15 +27,26 @@ router.get('/forum/:category', function(req, res, next) {
 router.post('/chat-response', function(req,res){
 	var messageBody = req.body.message;
 
-	if(messageBody.includes("suicidal")){
-		res.json({response:"Something about going to childline"});
+	if(lastResponse === undefined){
+
+		if(messageBody.includes("suicidal")){
+			lastResponse = "Something about going to childline";
+			res.json({response:lastResponse});
+		}
+		else if(messageBody.includes("drugs")){
+			lastResponse = "Something about going to the police";
+			res.json({response:lastResponse});
+		}
+		else{
+			res.json({response:"Sorry, I didn't get that."});
+		}
 	}
-	else if(messageBody.includes("drugs")){
-		res.json({response:"Something about going to the police"});
+	else if(lastResponse.includes()){
+
 	}
-	else{
-		res.json({response:"Sorry, I didn't get that."});
-	} 	
+	else if(lastResponse.includes()){
+
+	}  	
 });
 
 module.exports = router;
