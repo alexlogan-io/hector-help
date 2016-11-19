@@ -116,17 +116,18 @@
             $.ajax({
                 url:'https://login.microsoftonline.com/d6d49420-f39b-4df7-a1dc-d59a935871db/oauth2/v2.0/token',
                 type:'POST',
-                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                headers: {'Content-Type': 'application/x-www-form-urlencoded',
+                            'Access-Control-Allow-Origin': '*'},
                 transformRequest: function(obj) {
                     var str = [];
                     for(var p in obj)
                     str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
                     return str.join("&");
                 },
-                data: {grant_type:'client_credentials',
-                    client_id:'63df6ce0-b163-419e-a8b0-48cfd615646',
-                    client_secret:'tfCi9cmMBywRVn7d2QAJo97',
-                    scope:'https://api.botframework.com/.default'
+                data: {grant_type: 'client_credentials',
+                    client_id: '63df6ce0-b163-419e-a8b0-48cfd615646',
+                    client_secret: 'tfCi9cmMBywRVn7d2QAJo97',
+                    scope: 'https://api.botframework.com/.default'
                 },
                 success: function(data){  
                     console.log(data);
