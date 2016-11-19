@@ -133,7 +133,7 @@
                  console.log('error');
                  sendMessage($('.message_input').val(),'right');
                     setTimeout(function () {
-                        lastCommand = "null";
+                        lastCommand = "WelcomeCommand";
                         $('.send_message').attr('disabled',false);
                         return sendMessage("Sorry, I didn't understand that.",'left');
                     }, 1500);
