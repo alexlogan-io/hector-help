@@ -113,7 +113,7 @@
 
         $('.send_message').click(function (e) {
 
-            var postdata = {};
+            var postdata = {message:getMessageText};
 
         	$.post('/chat-response', postdata).
         		done(function(data){

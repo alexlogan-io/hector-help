@@ -23,7 +23,17 @@ router.get('/forum/:category', function(req, res, next) {
 });
 
 router.post('/chat-response', function(req,res){
-  res.json({response:"a test response"});
+	var messageBody = req.body.message;
+
+	if(messageBody.includes("suicidal")){
+		res.json({response:"Something about going to childline"});
+	}
+	else if(messageBody.includes("drugs")){
+		res.json({response:"Something about going to the police"});
+	}
+	else{
+		res.json({response:"Sorry, I didn't get that."});
+	} 	
 });
 
 module.exports = router;
