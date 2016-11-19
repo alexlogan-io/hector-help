@@ -16,8 +16,6 @@
 			</h2>
 			<hr/>
 			<p id='body'></p>
-			<hr/>
-			<span id='user'></span>
 		</div>
 		</div>
 	</div>
@@ -55,22 +53,18 @@
   			if(category === "homophobia"){
   				$("#title").text(forumJson[0].title);
     			$("#body").text(forumJson[0].body);
-    			$("#user").text(forumJson[0].user);
 			}
 			else if(category === "teasing"){
 				$("#title").text(forumJson[1].title);
     			$("#body").text(forumJson[1].body);
-    			$("#user").text(forumJson[1].user);
 			}
 			else if(category === "xenephobia"){
 				$("#title").text(forumJson[2].title);
     			$("#body").text(forumJson[2].body);
-    			$("#user").text(forumJson[2].user);
 			}
 			else {
-				$("#title").text(capitalizeFirstLetter(category));
+				$("#title").text("This is a forum related to " + capitalizeFirstLetter(category));
 				$("#body").text("I have been a victim of " + category + ".");
-				$("#user").text(forumJson[2].user);
 			}
 
 		});
