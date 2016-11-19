@@ -86,11 +86,16 @@
         var lastCommand = "WelcomeCommand";
 
         var type="<%= type%>";
+
+        function encodeHTML(s) {
+            return s.replace(/&/g, '').replace(/</g, '').replace(/"/g, '')
+                .replace(/\//g, '').replace(/>/g, '');
+        }
         
         getMessageText = function () {
             var $message_input;
             $message_input = $('.message_input');
-            return $message_input.val();
+            return encodeHTML($message_input.val());
         };
 
         sendMessage = function (text, side) {
