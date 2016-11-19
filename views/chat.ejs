@@ -117,7 +117,7 @@
                 url:'https://login.microsoftonline.com/d6d49420-f39b-4df7-a1dc-d59a935871db/oauth2/v2.0/token',
                 type:'POST',
                 headers: {'Content-Type': 'application/x-www-form-urlencoded',
-                            'Access-Control-Allow-Origin': '*'},
+                            'Access-Control-Allow-Origin': 'x-requested-with'},
                 transformRequest: function(obj) {
                     var str = [];
                     for(var p in obj)
