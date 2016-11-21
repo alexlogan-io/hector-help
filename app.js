@@ -8,8 +8,9 @@ var bodyParser = require('body-parser');
 //var mongoose = require('mongoose');
 //mongoose.connect('mongodb://localhost/test');
 
-var routes = require('./routes/index');
-var users = require('./routes/users');
+var config = require('./db.js');
+
+var routes = require('./routes/index')(config);
 
 var app = express();
 
@@ -26,7 +27,14 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
-app.use('/users', users);
+
+app.use(function(req, res, next) {
+  if (config.preLaunch === true) {
+      res.render('preLaunch');
+  }else{
+    next();
+  }
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
