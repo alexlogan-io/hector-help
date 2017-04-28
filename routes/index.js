@@ -27,7 +27,6 @@ module.exports = function(config){
 	  res.render('about', { title: 'Hector Help' });
 	});
 
-	/*
 	router.get('/chat', function(req, res, next) {
 	  res.render('chat', { title: 'Hector Help', type:req.query.type });
 	});
@@ -64,7 +63,6 @@ module.exports = function(config){
 
 		}  	
 	});
-	*/
 
 	return router;
 };
