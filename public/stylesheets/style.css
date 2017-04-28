@@ -85,7 +85,7 @@ li.capitalize {
 .messages {
   position: relative;
   list-style: none;
-  padding: 20px 10px 0 10px;
+  padding: 20px 17px 0 10px;
   margin: 0;
   height: 347px;
   overflow: scroll;
@@ -97,6 +97,12 @@ li.capitalize {
   transition: all 0.5s linear;
   opacity: 0;
 }
+
+::-webkit-scrollbar {
+    width: 0px;  /* remove scrollbar space */
+    background: transparent;  /* optional: just make scrollbar invisible */
+}
+
 .messages .message.left .avatar {
   float: left;
 }
